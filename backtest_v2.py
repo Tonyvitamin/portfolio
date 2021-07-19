@@ -5,7 +5,7 @@ from backtesting_stratgies.SMA import SmaCross
 from backtesting import Backtest
 
 
-stock = "2330.TW"
+stock = "2887.TW"
 df = pd.read_csv(f"./data/{stock}.csv", index_col=0)
 df = df.interpolate()
 
@@ -19,7 +19,7 @@ result = test.run()
 
 opt_result = test.optimize(n1=range(5, 50, 5),  
                     n2=range(10, 120, 5),
-                    maximize='SQN',  
+                    maximize='Equity Final [$]',  
                     constraint=lambda p: p.n1 < p.n2)  
       
 print("Original strategy")
@@ -28,4 +28,4 @@ print()
 print("Optimize strategy")
 print(opt_result)  
 
-#test.plot(filename=f"./backtest_result/{stock}.html") 
+test.plot(filename=f"./backtest_result/{stock}.html") 
